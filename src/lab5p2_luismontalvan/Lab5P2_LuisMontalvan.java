@@ -4,17 +4,23 @@
  */
 package lab5p2_luismontalvan;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luism
  */
 public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Lab5P2_LuisMontalvan
      */
     public Lab5P2_LuisMontalvan() {
         initComponents();
+        jPAgregarPersonaje.setVisible(false);
+        jPListado.setVisible(false);
+        jPSimulacion.setVisible(false);
     }
 
     /**
@@ -28,14 +34,29 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
 
         jPBG = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        jBtnAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPVacio = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        jPAgregarPersonaje = new javax.swing.JPanel();
+        jTFNombre = new javax.swing.JTextField();
+        jLTitulo = new javax.swing.JLabel();
+        jLNombre = new javax.swing.JLabel();
+        jLUniverso = new javax.swing.JLabel();
+        jCBUniverso = new javax.swing.JComboBox<>();
+        jLPoder = new javax.swing.JLabel();
+        jTFPoder = new javax.swing.JTextField();
+        jLFuerza = new javax.swing.JLabel();
+        jTFFuerza = new javax.swing.JTextField();
+        jLAFisica = new javax.swing.JLabel();
+        jTFAFisica = new javax.swing.JTextField();
+        jLAMental = new javax.swing.JLabel();
+        jTFAMental = new javax.swing.JTextField();
+        jLPuntosVida = new javax.swing.JLabel();
+        jTFPuntosVida = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jPListado = new javax.swing.JPanel();
+        jPSimulacion = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -44,16 +65,21 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setText("Agregar Personaje");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jBtnAgregar.setText("Agregar Personaje");
+        jBtnAgregar.setFocusable(false);
+        jBtnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtnAgregarMouseClicked(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jBtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAgregarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnAgregar);
 
         jButton2.setText("Lisatdo de Personajes");
         jButton2.setFocusable(false);
@@ -87,69 +113,205 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
 
         jPBG.add(jPVacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 600, 480));
 
-        jTextField1.setText("jTextField1");
+        jLTitulo.setText("Agregar Personaje");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jLNombre.setText("Nombre");
+
+        jLUniverso.setText("Universo");
+
+        jCBUniverso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DC", "Marvel", "Capcom", "Mortal Kombat" }));
+        jCBUniverso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBUniversoActionPerformed(evt);
+            }
+        });
+
+        jLPoder.setText("Poder");
+
+        jTFPoder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFPoderActionPerformed(evt);
+            }
+        });
+
+        jLFuerza.setText("Fuerza");
+
+        jTFFuerza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFFuerzaActionPerformed(evt);
+            }
+        });
+
+        jLAFisica.setText("Agilidad Fisica");
+
+        jTFAFisica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFAFisicaActionPerformed(evt);
+            }
+        });
+
+        jLAMental.setText("Agilidad Mental");
+
+        jTFAMental.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFAMentalActionPerformed(evt);
+            }
+        });
+
+        jLPuntosVida.setText("Puntos de Vida");
+
+        jButton1.setText("Agregar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPAgregarPersonajeLayout = new javax.swing.GroupLayout(jPAgregarPersonaje);
+        jPAgregarPersonaje.setLayout(jPAgregarPersonajeLayout);
+        jPAgregarPersonajeLayout.setHorizontalGroup(
+            jPAgregarPersonajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAgregarPersonajeLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPAgregarPersonajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLUniverso)
+                    .addComponent(jLTitulo)
+                    .addComponent(jLNombre)
+                    .addComponent(jTFNombre)
+                    .addComponent(jLFuerza)
+                    .addComponent(jLAFisica)
+                    .addGroup(jPAgregarPersonajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLPuntosVida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLAMental, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTFPoder)
+                    .addComponent(jTFFuerza)
+                    .addComponent(jTFAFisica)
+                    .addComponent(jTFAMental)
+                    .addComponent(jTFPuntosVida)
+                    .addComponent(jCBUniverso, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
+        );
+        jPAgregarPersonajeLayout.setVerticalGroup(
+            jPAgregarPersonajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAgregarPersonajeLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(jLNombre)
+                .addGap(5, 5, 5)
+                .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLUniverso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCBUniverso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLPoder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTFPoder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPAgregarPersonajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAgregarPersonajeLayout.createSequentialGroup()
+                        .addComponent(jLFuerza)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFFuerza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLAFisica))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTFAFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLAMental)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTFAMental, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLPuntosVida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTFPuntosVida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+
+        jPBG.add(jPAgregarPersonaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        javax.swing.GroupLayout jPListadoLayout = new javax.swing.GroupLayout(jPListado);
+        jPListado.setLayout(jPListadoLayout);
+        jPListadoLayout.setHorizontalGroup(
+            jPListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jPBG.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPListadoLayout.setVerticalGroup(
+            jPListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        jPBG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPBG.add(jPListado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPSimulacionLayout = new javax.swing.GroupLayout(jPSimulacion);
+        jPSimulacion.setLayout(jPSimulacionLayout);
+        jPSimulacionLayout.setHorizontalGroup(
+            jPSimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPSimulacionLayout.setVerticalGroup(
+            jPSimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        jPBG.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPBG.add(jPSimulacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAgregarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBtnAgregarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jCBUniversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUniversoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBUniversoActionPerformed
+
+    private void jTFPoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPoderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFPoderActionPerformed
+
+    private void jTFFuerzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFFuerzaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFFuerzaActionPerformed
+
+    private void jTFAFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFAFisicaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFAFisicaActionPerformed
+
+    private void jTFAMentalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFAMentalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFAMentalActionPerformed
+
+    private void jBtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnAgregarMouseClicked
+            // TODO add your handling code here:
+            jPVacio.setVisible(false);
+            jPAgregarPersonaje.setVisible(true);
+    }//GEN-LAST:event_jBtnAgregarMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        JOptionPane.showMessageDialog(this, "Agregado con exito");
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -187,23 +349,39 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnAgregar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jCBUniverso;
+    private javax.swing.JLabel jLAFisica;
+    private javax.swing.JLabel jLAMental;
+    private javax.swing.JLabel jLFuerza;
+    private javax.swing.JLabel jLNombre;
+    private javax.swing.JLabel jLPoder;
+    private javax.swing.JLabel jLPuntosVida;
+    private javax.swing.JLabel jLTitulo;
+    private javax.swing.JLabel jLUniverso;
+    private javax.swing.JPanel jPAgregarPersonaje;
     private javax.swing.JPanel jPBG;
+    private javax.swing.JPanel jPListado;
+    private javax.swing.JPanel jPSimulacion;
     private javax.swing.JPanel jPVacio;
     private javax.swing.JPanel jPVacio1;
     private javax.swing.JPanel jPVacio2;
     private javax.swing.JPanel jPVacio3;
     private javax.swing.JPanel jPVacio4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTFAFisica;
+    private javax.swing.JTextField jTFAMental;
+    private javax.swing.JTextField jTFFuerza;
+    private javax.swing.JTextField jTFNombre;
+    private javax.swing.JTextField jTFPoder;
+    private javax.swing.JTextField jTFPuntosVida;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Personaje> personajes = new ArrayList();
 }

@@ -48,7 +48,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jBtnAgregar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Personaje"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -56,7 +56,8 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBtnAgregarMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnAgregarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
@@ -100,7 +101,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="jPAgregarPersonaje">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
@@ -110,38 +111,166 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="500" max="32767" attributes="0"/>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLPoder" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jLUniverso" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLTitulo" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTFNombre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLFuerza" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLAFisica" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLPuntosVida" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLAMental" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jTFPoder" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFFuerza" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFAFisica" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFAMental" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFPuntosVida" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jCBUniverso" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="135" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="480" max="32767" attributes="0"/>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="jLTitulo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLNombre" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="jTFNombre" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLUniverso" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jCBUniverso" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLPoder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTFPoder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLFuerza" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTFFuerza" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLAFisica" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jButton1" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTFAFisica" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLAMental" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTFAMental" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLPuntosVida" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTFPuntosVida" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="81" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="jTFNombre">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLTitulo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField1"/>
+                <Property name="text" type="java.lang.String" value="Agregar Personaje"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLNombre">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLUniverso">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Universo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jCBUniverso">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;DC&quot;, &quot;Marvel&quot;, &quot;Capcom&quot;, &quot;Mortal Kombat&quot; })" type="code"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBUniversoActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLPoder">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Poder"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTFPoder">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFPoderActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLFuerza">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fuerza"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTFFuerza">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFFuerzaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLAFisica">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Agilidad Fisica"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTFAFisica">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFAFisicaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLAMental">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Agilidad Mental"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTFAMental">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFAMentalActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLPuntosVida">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Puntos de Vida"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTFPuntosVida">
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Agregar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="jPListado">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
@@ -161,7 +290,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel7">
+        <Container class="javax.swing.JPanel" name="jPSimulacion">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
