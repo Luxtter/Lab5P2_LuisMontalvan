@@ -6,6 +6,7 @@ package lab5p2_luismontalvan;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -56,6 +57,10 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
         jTFPuntosVida = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPListado = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTPersonajes = new javax.swing.JTree();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jPSimulacion = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -240,15 +245,34 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
 
         jPBG.add(jPAgregarPersonaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jScrollPane1.setViewportView(jTPersonajes);
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
+
         javax.swing.GroupLayout jPListadoLayout = new javax.swing.GroupLayout(jPListado);
         jPListado.setLayout(jPListadoLayout);
         jPListadoLayout.setHorizontalGroup(
             jPListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jPListadoLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
         );
         jPListadoLayout.setVerticalGroup(
             jPListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(jPListadoLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jPBG.add(jPListado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -311,6 +335,8 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         JOptionPane.showMessageDialog(this, "Agregado con exito");
+        DefaultTreeModel modelo = (DefaultTreeModel)jTPersonajes.getModel();
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -362,6 +388,7 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
     private javax.swing.JLabel jLPuntosVida;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JLabel jLUniverso;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPAgregarPersonaje;
     private javax.swing.JPanel jPBG;
     private javax.swing.JPanel jPListado;
@@ -375,12 +402,15 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTFAFisica;
     private javax.swing.JTextField jTFAMental;
     private javax.swing.JTextField jTFFuerza;
     private javax.swing.JTextField jTFNombre;
     private javax.swing.JTextField jTFPoder;
     private javax.swing.JTextField jTFPuntosVida;
+    private javax.swing.JTree jTPersonajes;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Personaje> personajes = new ArrayList();

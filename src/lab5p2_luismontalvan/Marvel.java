@@ -8,31 +8,15 @@ package lab5p2_luismontalvan;
  *
  * @author luism
  */
-public class Personaje {
-    protected String nombre, universo, fuerza, poder, aMental, aFisica, hp;
+public class Marvel extends Personaje{
 
-    public Personaje() {
+    public Marvel() {
+        super();
     }
 
-    public Personaje(String nombre, String universo, String fuerza, String poder, String aMental, String aFisica, String hp) {
-        this.nombre = nombre;
-        this.universo = universo;
-        this.fuerza = fuerza;
-        this.poder = poder;
-        this.aMental = aMental;
-        this.aFisica = aFisica;
-        this.hp = hp;
+    public Marvel(String nombre, String universo, String fuerza, String poder, String aMental, String aFisica, String hp) {
+        super(nombre, universo, fuerza, poder, aMental, aFisica, hp);
     }
-
-    public String getFuerza() {
-        return fuerza;
-    }
-
-    public void setFuerza(String fuerza) {
-        this.fuerza = fuerza;
-    }
-
-    
 
     public String getNombre() {
         return nombre;
@@ -48,6 +32,14 @@ public class Personaje {
 
     public void setUniverso(String universo) {
         this.universo = universo;
+    }
+
+    public String getFuerza() {
+        return fuerza;
+    }
+
+    public void setFuerza(String fuerza) {
+        this.fuerza = fuerza;
     }
 
     public String getPoder() {
@@ -84,7 +76,7 @@ public class Personaje {
 
     @Override
     public String toString() {
-        return "Poder  -> "+poder+ "\nFuerza -> "+fuerza+ "\nAgilidad Fisica -> "+aFisica+"\nAgilidad Mental -> "+aMental+"HP -> "+hp;
+        return super.toString();
     }
     
 }
