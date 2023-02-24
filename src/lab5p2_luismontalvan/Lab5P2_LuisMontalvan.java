@@ -6,6 +6,7 @@ package lab5p2_luismontalvan;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -90,6 +91,11 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jToolBar1.add(jButton2);
 
         jButton3.setText("Simulacion de Batalla");
@@ -191,9 +197,8 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
                     .addComponent(jTFNombre)
                     .addComponent(jLFuerza)
                     .addComponent(jLAFisica)
-                    .addGroup(jPAgregarPersonajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLPuntosVida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLAMental, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLPuntosVida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLAMental)
                     .addComponent(jTFPoder)
                     .addComponent(jTFFuerza)
                     .addComponent(jTFAFisica)
@@ -245,6 +250,8 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
 
         jPBG.add(jPAgregarPersonaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Personajes");
+        jTPersonajes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jTPersonajes);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -272,7 +279,7 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
                 .addGroup(jPListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jPBG.add(jPListado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -326,6 +333,7 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
     private void jBtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnAgregarMouseClicked
             // TODO add your handling code here:
             jPVacio.setVisible(false);
+            jPListado.setVisible(false);
             jPAgregarPersonaje.setVisible(true);
     }//GEN-LAST:event_jBtnAgregarMouseClicked
 
@@ -334,10 +342,42 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        JOptionPane.showMessageDialog(this, "Agregado con exito");
-        DefaultTreeModel modelo = (DefaultTreeModel)jTPersonajes.getModel();
+        String nombre, universo, fuerza, poder, aMental, aFisica, hp;
+        nombre = jTFNombre.getText();
+        universo = (String)jCBUniverso.getSelectedItem();
+        fuerza = jTFFuerza.getText();
+        poder = jTFPoder.getText();
+        aMental = jTFAMental.getText();
+        aFisica = jTFAFisica.getText();
+        hp = jTFPuntosVida.getText();
         
+        if ((String)jCBUniverso.getSelectedItem()=="Marvel") {
+            personajes.add(new Marvel(nombre, universo, fuerza, poder, aMental, aFisica, hp));
+        }else if((String)jCBUniverso.getSelectedItem()=="Capcom"){
+            personajes.add(new Capcom(nombre, universo, fuerza, poder, aMental, aFisica, hp));
+        }else if ((String)jCBUniverso.getSelectedItem()=="DC") {
+            personajes.add(new DC(nombre, universo, fuerza, poder, aMental, aFisica, hp));
+        }else{
+            personajes.add(new MortalKombat(nombre, universo, fuerza, poder, aMental, aFisica, hp));
+        }
+        JOptionPane.showMessageDialog(this, "Agregado con exito");
+        int pos = personajes.size();
+        
+        DefaultTreeModel modelo = (DefaultTreeModel)jTPersonajes.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)modelo.getRoot();
+        DefaultMutableTreeNode n
+                        = new DefaultMutableTreeNode(universo);
+                DefaultMutableTreeNode p
+                        = new DefaultMutableTreeNode(personajes.get(pos-1));
+                n.add(p);
+                raiz.add(n);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        jPAgregarPersonaje.setVisible(false);
+        jPListado.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -394,14 +434,6 @@ public class Lab5P2_LuisMontalvan extends javax.swing.JFrame {
     private javax.swing.JPanel jPListado;
     private javax.swing.JPanel jPSimulacion;
     private javax.swing.JPanel jPVacio;
-    private javax.swing.JPanel jPVacio1;
-    private javax.swing.JPanel jPVacio2;
-    private javax.swing.JPanel jPVacio3;
-    private javax.swing.JPanel jPVacio4;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTFAFisica;
