@@ -76,7 +76,10 @@ public class MortalKombat extends Personaje{
 
     @Override
     public String toString() {
-        return super.toString();
+        return nombre;
     }
     
+    public String Info(){
+        return super.toString();
+    }
 }
